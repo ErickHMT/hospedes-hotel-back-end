@@ -13,12 +13,11 @@ import org.springframework.web.util.UriComponentsBuilder;
 import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
-import java.util.Optional;
 
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping(value = "/hospedes")
-public class HospedeController extends ResponseAbstractController {
+public class HospedeController {
 
     @Autowired
     private HospedeService hospedeService;
@@ -36,6 +35,11 @@ public class HospedeController extends ResponseAbstractController {
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<?> edit(@PathVariable Long id, @RequestBody @Valid Hospede hospede) {
+        return ResponseEntity.ok(hospedeService.edit(id, hospede));
+    }
+
     @GetMapping(value = "/nome/")
     public ResponseEntity<?> getHospedesByNome(@RequestParam String nome){
         List<Hospede> hospedes = hospedeService.getHospedeByNome(nome);
@@ -44,8 +48,8 @@ public class HospedeController extends ResponseAbstractController {
 
     @PostMapping(value = "/filtro")
     public ResponseEntity<?> getHospedesByFiltro(@RequestBody CheckInFiltro checkInFiltro){
-        List<Hospede> hospedes = hospedeService.getHospedeByFiltro(checkInFiltro);
-        return ResponseEntity.ok(HospedeDto.from(hospedes));
+        List<HospedeDto> hospedes = hospedeService.getHospedeByFiltro(checkInFiltro);
+        return ResponseEntity.ok(hospedes);
     }
 
     @GetMapping

@@ -1,7 +1,6 @@
 package com.hotel.service;
 
 import com.hotel.entity.CheckIn;
-import com.hotel.entity.Hospede;
 import com.hotel.repository.CheckInRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

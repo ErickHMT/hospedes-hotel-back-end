@@ -1,15 +1,11 @@
 package com.hotel.core;
 
 import com.hotel.core.util.DateUtil;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 
-@Component
 public class DiariaDecorator {
 
     private String vlDiariaSemana = "120";

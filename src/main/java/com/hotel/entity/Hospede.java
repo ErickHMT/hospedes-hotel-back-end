@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.math.BigDecimal;
 import java.util.List;
 
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
@@ -14,7 +13,6 @@ public class Hospede {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PK_HOSPEDE_SEQ")
     @SequenceGenerator(name = "PK_HOSPEDE_SEQ", sequenceName = "PK_HOSPEDE_SEQ", allocationSize = 1)
-//    @Column(name = "PK_HOSPEDE")
     private Long id;
 
     @NotNull
@@ -26,11 +24,15 @@ public class Hospede {
     @NotNull
     private String telefone;
 
-    @OneToMany(mappedBy = "hospede", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "hospede")
     private List<CheckIn> checkIn;
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getNome() {
@@ -63,30 +65,5 @@ public class Hospede {
 
     public void setCheckIn(List<CheckIn> checkIn) {
         this.checkIn = checkIn;
-    }
-
-    public Hospede getValorGastoHospede(){
-        return null;
-    }
-
-    public BigDecimal getTotalHospedagemAtual(){
-//        List<CheckIn> checkInList = getCheckIn();
-//        if(checkInList == null || checkInList.isEmpty()){
-//            return null;
-//        }
-//
-//        CheckIn checkIn = getCheckIn().get(checkInList.size());
-//        return CalculaValorHospedagem.getValorTotalHospedagem(checkIn);
-
-        return null;
-    }
-
-    public BigDecimal getTotalHospedagemAnterior(){
-//        List<CheckIn> checkInList = getCheckInList();
-//        if(checkInList != null || checkInList.size() > 1) {
-//            CheckIn checkInAnterior = checkInList.get(checkInList.size() - 1);
-//            return CalculaValorHospedagem.getValorTotalHospedagem(checkInAnterior);
-//        }
-        return null;
     }
 }

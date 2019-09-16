@@ -32,7 +32,11 @@ public class HospedeService {
 
     public List<HospedeDto> findAll() {
         List<Hospede> hospedes = hospedeRepository.findAll();
+        List<HospedeDto> hospedeDtoList = getHospedeDtoFromHospede(hospedes);
+        return hospedeDtoList;
+    }
 
+    private List<HospedeDto> getHospedeDtoFromHospede(List<Hospede> hospedes) {
         List<HospedeDto> hospedeDtoList = new ArrayList<>();
         for (Hospede hospede: hospedes) {
             List<CheckIn> checkIn = hospede.getCheckIn();
@@ -43,7 +47,6 @@ public class HospedeService {
 
             hospedeDtoList.add(hospedeDto);
         }
-
         return hospedeDtoList;
     }
 
@@ -65,13 +68,13 @@ public class HospedeService {
         return hospedeRepository.getHospedesByNomeContainingIgnoreCase(nome);
     }
     
-    public List<Hospede> getHospedeByFiltro(CheckInFiltro checkInFiltro) throws GenericException {
+    public List<HospedeDto> getHospedeByFiltro(CheckInFiltro checkInFiltro) throws GenericException {
         List<Hospede> hospedes = hospedeRepository.getHospedeByFiltro(checkInFiltro.getNome(),
                 checkInFiltro.getDocumento(),
                 checkInFiltro.getTelefone());
 
         // Filtra hospedes pelo parametro "hospedePresente"
-        return hospedes.stream().filter(hospede -> {
+        List<Hospede> hospedesList = hospedes.stream().filter(hospede -> {
             CheckIn checkInAtual = checkInService.getCheckInAtual(hospede.getCheckIn());
             if (checkInFiltro.isHospedePresente()) {
                 return checkInAtual != null;
@@ -79,5 +82,16 @@ public class HospedeService {
                 return checkInAtual == null;
             }
         }).collect(Collectors.toList());
+
+        return getHospedeDtoFromHospede(hospedesList);
+    }
+
+    public Hospede edit(Long id, Hospede hospede) {
+        Hospede saved = hospedeRepository.findById(id).orElse(null);
+        if (saved == null) {
+            throw new GenericException("Hospede não encontrado");
+        }
+        hospede.setId(saved.getId());
+        return save(hospede);
     }
 }

@@ -1,8 +1,6 @@
 package com.hotel.core;
 
 import com.hotel.core.util.DateUtil;
-import com.hotel.entity.CheckIn;
-import org.springframework.beans.factory.annotation.Value;
 
 import java.math.BigDecimal;
 import java.time.DayOfWeek;

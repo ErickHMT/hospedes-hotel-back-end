@@ -1,10 +1,7 @@
 package com.hotel.entity;
 
-import org.apache.tomcat.jni.Local;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -13,13 +10,9 @@ public class CheckIn {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PK_CHECK_IN_SEQ")
     @SequenceGenerator(name = "PK_CHECK_IN_SEQ", sequenceName = "PK_CHECK_IN_SEQ", allocationSize = 1)
-//    @Column(name = "PK_CHECK_IN")
     private Long id;
 
-//    @ManyToOne(fetch = FetchType.EAGER, optional = false)
-//    @JoinColumn(name = "fk_hospede", referencedColumnName = "PK_HOSPEDE")
-//    private Hospede hospede;
-    @ManyToOne //(fetch = FetchType.LAZY)
+    @ManyToOne
     private Hospede hospede;
 
     @NotNull
