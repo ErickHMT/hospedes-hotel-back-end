@@ -10,11 +10,8 @@ import java.time.LocalDateTime;
 
 public class GaragemDecorator {
 
-    @Value("${hotel.parametro.valor.garagem.semana}")
-    private static BigDecimal vlGaragemSemana;
-
-    @Value("${hotel.parametro.valor.garagem.fim.semana}")
-    private static BigDecimal vlGaragemFimDeSemana;
+    private String vlGaragemSemana = "15";
+    private String vlGaragemFimDeSemana = "20";
 
     private final boolean hasCar;
     private final DayOfWeek data;
@@ -32,8 +29,8 @@ public class GaragemDecorator {
 
     private BigDecimal calculaValor() {
         return DateUtil.isFinalDeSemana(this.data)
-                ? vlGaragemFimDeSemana
-                : vlGaragemSemana;
+                ? new BigDecimal(vlGaragemFimDeSemana)
+                : new BigDecimal(vlGaragemSemana);
     }
 
 }

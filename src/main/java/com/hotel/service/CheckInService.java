@@ -22,5 +22,26 @@ public class CheckInService {
         return checkInRepository.findAll();
     }
 
+    public CheckIn getCheckInAnterior(List<CheckIn> checkIn) {
+        if(checkIn.isEmpty()){
+            return null;
+        }
+        if(checkIn.get(checkIn.size() - 1).getDataSaida() != null){
+            return checkIn.get(checkIn.size() - 1);
+        }
+
+        return checkIn.size() > 1 ? checkIn.get(checkIn.size() - 2) : null;
+    }
+
+    public CheckIn getCheckInAtual(List<CheckIn> checkIn) {
+        if(checkIn.isEmpty()){
+            return null;
+        }
+
+        return checkIn.get(checkIn.size() - 1).getDataSaida() == null
+                ? checkIn.get(checkIn.size() - 1)
+                : null;
+    }
+
 
 }

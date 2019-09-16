@@ -27,8 +27,6 @@ public class Hospede {
     @NotNull
     private String telefone;
 
-//    @JsonIgnore
-//    @OneToMany(mappedBy = "hospede", cascade = CascadeType.ALL, orphanRemoval = true)
     @OneToMany(mappedBy = "hospede", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CheckIn> checkIn;
 

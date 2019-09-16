@@ -11,23 +11,23 @@ import java.util.Calendar;
 
 public class DateUtil {
 
-    @Value("${hotel.parametro.hora.limite.diaria}")
-    private static String horaLimiteDiaria;
+//    @Value("${hotel.parametro.hora.limite.diaria}")
+    private static String horaLimiteDiaria = "16";
 
-    @Value("${hotel.parametro.minuto.limite.diaria}")
-    private static String minutosLimiteDiaria;
+//    @Value("${hotel.parametro.minuto.limite.diaria}")
+    private static String minutosLimiteDiaria = "30";
 
     public static boolean isFinalDeSemana(DayOfWeek dia) {
-        return (dia.getValue() == Calendar.SATURDAY)
-                || (dia.getValue() == Calendar.SUNDAY);
+
+        return (dia == DayOfWeek.SATURDAY)
+                || (dia == DayOfWeek.SUNDAY);
     }
 
-    public static boolean deveCobrarDiariaExtra() {
-        LocalDateTime dataAtual = LocalDateTime.now();
+    public static boolean deveCobrarDiariaExtra(LocalDateTime dia) {
         String hrLimite = horaLimiteDiaria;
         String minLimite = minutosLimiteDiaria;
 
-        return dataAtual.getHour() > Integer.parseInt(hrLimite)
-                && dataAtual.getMinute() > Integer.parseInt(minLimite);
+        return dia.getHour() > Integer.parseInt(hrLimite)
+                && dia.getMinute() > Integer.parseInt(minLimite);
     }
 }

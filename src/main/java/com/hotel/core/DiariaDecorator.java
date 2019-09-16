@@ -2,20 +2,24 @@ package com.hotel.core;
 
 import com.hotel.core.util.DateUtil;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 
+@Component
 public class DiariaDecorator {
 
-    @Value("${hotel.parametro.valor.diaria.semana}")
-    private static String vlDiariaSemana;
-
-    @Value("${hotel.parametro.valor.diaria.fim.semana}")
-    private static String vlDiariaFimDeSemana;
+    private String vlDiariaSemana = "120";
+    private String vlDiariaFimDeSemana = "150";
 
     private DayOfWeek dia;
+
+    public DiariaDecorator(){
+        this.dia = LocalDateTime.now().getDayOfWeek();
+    }
 
     public DiariaDecorator(final LocalDateTime dia) {
         this.dia = dia.getDayOfWeek();
@@ -23,8 +27,8 @@ public class DiariaDecorator {
 
     public BigDecimal getValorDiaria() {
         return DateUtil.isFinalDeSemana(dia)
-                ? new BigDecimal(vlDiariaFimDeSemana)
-                : new BigDecimal(vlDiariaSemana);
+                ? new BigDecimal(this.vlDiariaFimDeSemana)
+                : new BigDecimal(this.vlDiariaSemana);
     }
 
 }

@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class HospedeService {
@@ -22,29 +21,28 @@ public class HospedeService {
     @Autowired
     private FinanceiroService financeiroService;
 
+    @Autowired
+    private CheckInService checkInService;
+
     public Hospede save(Hospede hospede) {
         return hospedeRepository.save(hospede);
     }
 
     public List<HospedeDto> findAll() {
-        List<Hospede> hospedes = hospedeRepository.findAllShow();
+        List<Hospede> hospedes = hospedeRepository.findAll();
 
         List<HospedeDto> hospedeDtoList = new ArrayList<>();
         for (Hospede hospede: hospedes) {
             List<CheckIn> checkIn = hospede.getCheckIn();
             HospedeDto hospedeDto = new HospedeDto(hospede);
 
-            CheckIn checkInAnterior = checkIn.size() > 1 ? checkIn.get(checkIn.size() - 2) : null;
-            CheckIn checkInAtual = checkIn.size() > 1 ? checkIn.get(checkIn.size() - 1) : null;
-
-            hospedeDto.setValorHospedagemAtual(financeiroService.calculaValorDiaria(checkInAtual));
-            hospedeDto.setValorUltimaHospedagem(financeiroService.calculaValorDiaria(checkInAnterior));
+            hospedeDto.setValorHospedagemAtual(financeiroService.getValorEstadia(checkInService.getCheckInAtual(checkIn)));
+            hospedeDto.setValorUltimaHospedagem(financeiroService.getValorEstadia(checkInService.getCheckInAnterior(checkIn)));
 
             hospedeDtoList.add(hospedeDto);
         }
 
         return hospedeDtoList;
-//        return hospedes.stream().map(hospede -> new HospedeDto(hospede)).collect(Collectors.toList());
     }
 
     public void delete(Long id) {
