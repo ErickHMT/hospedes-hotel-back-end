@@ -1,7 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4fec167b-f057-4bb5-ab4d-5978a12eec7c" name="Default Changelist" comment="" />
+    <list default="true" id="4fec167b-f057-4bb5-ab4d-5978a12eec7c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hotel/controller/CheckInController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hotel/controller/dto/CheckInDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hotel/core/DiariaDecorator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hotel/core/GaragemDecorator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hotel/repository/CheckInRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hotel/service/CheckInService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hotel/service/FinanceiroService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hotel/controller/HospedeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hotel/controller/HospedeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hotel/controller/dto/HospedeDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hotel/controller/dto/HospedeDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hotel/core/ParametrosDiaria.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hotel/core/util/DateUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hotel/core/util/DateUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hotel/entity/CheckIn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hotel/entity/CheckIn.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hotel/entity/Hospede.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hotel/entity/Hospede.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hotel/repository/HospedeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hotel/repository/HospedeRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hotel/service/CalculaValorHospedagem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hotel/service/CalculaValorHospedagem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hotel/service/HospedeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hotel/service/HospedeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -14,6 +35,9 @@
         <option value="Class" />
       </list>
     </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MavenImportPreferences">
     <option name="importingSettings">
@@ -28,11 +52,12 @@
     <property name="RequestMappingsPanelOrder1" value="1" />
     <property name="RequestMappingsPanelWidth0" value="75" />
     <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="extract.method.default.visibility" value="private" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/src/main/java/com/hotel" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/projeto-exemplo" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
@@ -51,9 +76,12 @@
       <recent name="com.hotel.entity" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.hotel.controller.dto" />
       <recent name="com.hotel.controller" />
     </key>
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.hotel.repository" />
+      <recent name="com.hotel.service" />
       <recent name="com.hotel.controller.dto" />
     </key>
   </component>
@@ -136,34 +164,57 @@
       <option name="presentableId" value="Default" />
       <updated>1568244419353</updated>
       <workItem from="1568244422216" duration="24444000" />
+      <workItem from="1568272358577" duration="445000" />
+      <workItem from="1568335094689" duration="2423000" />
+      <workItem from="1568428326540" duration="2231000" />
+      <workItem from="1568499006420" duration="645000" />
+      <workItem from="1568500044719" duration="39822000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/hotel/controller/CheckInController.java</url>
+          <line>34</line>
+          <option name="timeStamp" value="55" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/hotel/service/FinanceiroService.java</url>
+          <line>23</line>
+          <option name="timeStamp" value="61" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/hotel/core/DiariaDecorator.java</url>
+          <line>24</line>
+          <option name="timeStamp" value="62" />
+        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/hotel/service/HospedeService.java</url>
-          <line>27</line>
-          <option name="timeStamp" value="19" />
+          <line>36</line>
+          <option name="timeStamp" value="63" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/hotel/entity/Hospede.java</url>
-          <line>80</line>
-          <option name="timeStamp" value="27" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/hotel/controller/dto/HospedeDto.java</url>
-          <line>19</line>
-          <option name="timeStamp" value="31" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/hotel/controller/dto/HospedeDto.java</url>
-          <line>28</line>
-          <option name="timeStamp" value="32" />
+          <url>file://$PROJECT_DIR$/src/main/java/com/hotel/core/DiariaDecorator.java</url>
+          <line>20</line>
+          <option name="timeStamp" value="64" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

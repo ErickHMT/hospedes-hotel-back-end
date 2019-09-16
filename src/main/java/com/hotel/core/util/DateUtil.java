@@ -1,21 +1,31 @@
 package com.hotel.core.util;
 
-import com.hotel.core.ParametrosDiaria;
+import org.springframework.beans.factory.annotation.Value;
 
+import java.math.BigDecimal;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Calendar;
 
 public class DateUtil {
 
-    public static boolean isFinalDeSemana() {
-        Calendar c1 = Calendar.getInstance();
-        return (c1.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY)  || (c1.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY);
+    @Value("${hotel.parametro.hora.limite.diaria}")
+    private static String horaLimiteDiaria;
+
+    @Value("${hotel.parametro.minuto.limite.diaria}")
+    private static String minutosLimiteDiaria;
+
+    public static boolean isFinalDeSemana(DayOfWeek dia) {
+        return (dia.getValue() == Calendar.SATURDAY)
+                || (dia.getValue() == Calendar.SUNDAY);
     }
 
     public static boolean deveCobrarDiariaExtra() {
         LocalDateTime dataAtual = LocalDateTime.now();
-        String hrLimite = ParametrosDiaria.LIMITE_DIARIA.substring(0, 2);
-        String minLimite = ParametrosDiaria.LIMITE_DIARIA.substring(3);
+        String hrLimite = horaLimiteDiaria;
+        String minLimite = minutosLimiteDiaria;
 
         return dataAtual.getHour() > Integer.parseInt(hrLimite)
                 && dataAtual.getMinute() > Integer.parseInt(minLimite);

@@ -4,6 +4,7 @@ import com.hotel.controller.dto.HospedeDto;
 import com.hotel.entity.Hospede;
 import com.hotel.service.HospedeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -13,6 +14,7 @@ import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping(value = "/hospedes")
 public class HospedeController extends ResponseAbstractController {
@@ -27,13 +29,22 @@ public class HospedeController extends ResponseAbstractController {
         return ResponseEntity.created(uri).body(new HospedeDto(hospede));
     }
 
-    @GetMapping(value = "/nome/{nomeHospede}")
-    public ResponseEntity<?> getHospedeByNome(@PathVariable String nomeHospede){
-        Optional<Hospede> hospede = hospedeService.getHospedeByNome(nomeHospede);
-        if(hospede.isPresent()) {
-            return ResponseEntity.ok(new HospedeDto(hospede.get()));
-        }
-        return ResponseEntity.notFound().build();
+    @DeleteMapping(value = "/{hospedeId}")
+    public ResponseEntity<?> delete(@PathVariable Long hospedeId) {
+        hospedeService.delete(hospedeId);
+        return new ResponseEntity(HttpStatus.NO_CONTENT);
+    }
+
+    @GetMapping(value = "/nome/")
+    public ResponseEntity<?> getHospedeByNome(@RequestParam String nome){
+        List<Hospede> hospedes = hospedeService.getHospedeByNome(nome);
+        return ResponseEntity.ok(HospedeDto.from(hospedes));
+    }
+
+    @GetMapping
+    public ResponseEntity<?> findAll(){
+        List<HospedeDto> hospedes = hospedeService.findAll();
+        return ResponseEntity.ok(hospedes);
     }
 
     @GetMapping(value = "/documento/{documento}")
@@ -51,7 +62,7 @@ public class HospedeController extends ResponseAbstractController {
             List<HospedeDto> teste = HospedeDto.from(hospedes);
             return teste;
         }
-        return (List<HospedeDto>) ResponseEntity.notFound().build();
+        return null; //(List<HospedeDto>) ResponseEntity.notFound().build();
     }
 
 
