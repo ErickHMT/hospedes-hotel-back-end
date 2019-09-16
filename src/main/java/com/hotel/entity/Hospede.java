@@ -1,7 +1,6 @@
 package com.hotel.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.hotel.service.CalculaValorHospedagem;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;

@@ -12,18 +12,13 @@ import java.util.Optional;
 @Repository
 public interface HospedeRepository extends JpaRepository<Hospede, Long> {
 
-//    @Query(value="SELECT * FROM HOSPEDE h WHERE h.nome LIKE CONCAT('%', :nome, '%') ", nativeQuery = true)
-//    List<Hospede> getHospedesByNome(@Param("nome") String nome);
-
     List<Hospede> getHospedesByNomeContainingIgnoreCase(String nome);
 
-    Optional<Hospede> getHospedesByDocumentoContaining(String documento);
-
-    List<Hospede> getHospedesByTelefoneContaining(String telefone);
-
-    @Query(value="SELECT h FROM HOSPEDE h INNER JOIN CHECK_IN ci ON ci.hospede_id = h.id WHERE ci.data_saida IS NOT NULL ", nativeQuery = true)
-    Optional<Hospede> getHospedesAnteriores();
-
-    @Query(value="SELECT h FROM HOSPEDE h INNER JOIN CHECK_IN ci ON ci.hospede_id = h.id WHERE ci.data_saida IS NULL ", nativeQuery = true)
-    Optional<Hospede> getHospedesAtuais();
+    @Query(value="SELECT * FROM HOSPEDE h WHERE h.nome LIKE CONCAT('%', :nome, '%') " +
+            " AND h.documento LIKE CONCAT('%', :documento, '%') " +
+            " AND h.telefone LIKE CONCAT('%', :telefone, '%') "
+            , nativeQuery = true)
+    List<Hospede> getHospedeByFiltro(@Param("nome") String nome,
+                                     @Param("documento")String documento,
+                                     @Param("telefone") String telefone);
 }

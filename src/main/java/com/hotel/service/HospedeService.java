@@ -1,6 +1,7 @@
 package com.hotel.service;
 
 import com.hotel.controller.dto.HospedeDto;
+import com.hotel.controller.filtro.CheckInFiltro;
 import com.hotel.core.exception.GenericException;
 import com.hotel.entity.CheckIn;
 import com.hotel.entity.Hospede;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class HospedeService {
@@ -59,24 +61,23 @@ public class HospedeService {
         throw new GenericException("Hospede não encontrado");
     }
 
-    public List<Hospede> getHospedeByNome(String nome) throws GenericException {
-        List<Hospede> hospedes = hospedeRepository.getHospedesByNomeContainingIgnoreCase(nome);
-        return hospedes;
+    public List<Hospede> getHospedeByNome(String nome) {
+        return hospedeRepository.getHospedesByNomeContainingIgnoreCase(nome);
     }
+    
+    public List<Hospede> getHospedeByFiltro(CheckInFiltro checkInFiltro) throws GenericException {
+        List<Hospede> hospedes = hospedeRepository.getHospedeByFiltro(checkInFiltro.getNome(),
+                checkInFiltro.getDocumento(),
+                checkInFiltro.getTelefone());
 
-    public Optional<Hospede> getHospedeByDocumento(String Documento) throws GenericException {
-        return hospedeRepository.getHospedesByDocumentoContaining(Documento);
-    }
-
-    public List<Hospede> getHospedeByTelefone(String telefone) throws GenericException {
-        return hospedeRepository.getHospedesByTelefoneContaining(telefone);
-    }
-
-    public Optional<Hospede> getHospedesAnteriores() {
-        return hospedeRepository.getHospedesAnteriores();
-    }
-
-    public Optional<Hospede> getHospedesAtuais() {
-        return hospedeRepository.getHospedesAtuais();
+        // Filtra hospedes pelo parametro "hospedePresente"
+        return hospedes.stream().filter(hospede -> {
+            CheckIn checkInAtual = checkInService.getCheckInAtual(hospede.getCheckIn());
+            if (checkInFiltro.isHospedePresente()) {
+                return checkInAtual != null;
+            } else {
+                return checkInAtual == null;
+            }
+        }).collect(Collectors.toList());
     }
 }

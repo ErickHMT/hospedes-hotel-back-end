@@ -17,7 +17,7 @@ public class GaragemDecorator {
     private final DayOfWeek data;
 
     public GaragemDecorator(final Boolean hasCar, final LocalDateTime dia) {
-        this.hasCar = hasCar;
+        this.hasCar = hasCar == null ? false : hasCar;
         this.data = dia.getDayOfWeek();
     }
 
